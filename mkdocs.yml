@@ -1,0 +1,8 @@
+site_name: OAFeat use case
+
+nav:
+- Home page: index.md
+- Use case: use-case-oafeat-en-quartiles.ipynb
+
+plugins:
+  - mkdocs-jupyter
