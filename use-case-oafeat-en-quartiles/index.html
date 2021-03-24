@@ -6254,10 +6254,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <p>To run the entire notebook, click on the ⏩️ symbol or select the Cell -&gt; Run All option in the menu bar.</p>
 <h2 id="creation-of-a-tool-to-monitor-water-levels">Creation of a tool to monitor water levels<a class="anchor-link" href="#Creation-of-a-tool-to-monitor-water-levels">&#182;</a></h2><p>Cathy runs a boat tours and water sports company in Chilliwack, British-Columbia. She would like to track the water levels of a few hydrometric stations near her city to guide the management of the company's activities. She would like to have:</p>
 <ul>
-<li>An overview of the distribution of the daily water level of a three months period for all hydrometric stations located within 100 km of the city of Chilliwack (minimum, first quartile, median, third quartile and maximum) </li>
+<li>An overview of the distribution of the daily water level of a three months period for all hydrometric stations located within 50 km of the city of Chilliwack (minimum, first quartile, median, third quartile and maximum) </li>
 <li>A graphic view that presents the provisional daily mean water level of a three months period with a color code to indicate the water level status</li>
 <li>A tabular view that shows the provisional daily mean water level of a three months period with the same color code</li>
-<li>A web map that displays the hydrometric stations located within 100 km of the city of Chilliwack and the most recent provisional daily mean water level of these stations for the selected time period with the appropriate color code</li>
+<li>A web map that displays the hydrometric stations located within 50 km of the city of Chilliwack and the most recent provisional daily mean water level of these stations for the selected time period with the appropriate color code</li>
 </ul>
 <p>To achieve this, the first step is to import the necessary Python modules and to select the desired request parameters.</p>
 
@@ -6309,12 +6309,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         <div class="input_area">
             <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Parameters</span>
 
-<span class="c1"># Coordinates</span>
-<span class="n">lat</span> <span class="o">=</span> <span class="mf">45.3815</span>
-<span class="n">long</span> <span class="o">=</span> <span class="o">-</span><span class="mf">75.69697</span>
+<span class="c1"># Coordinates of Chilliwack</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="mf">49.162676</span>
+<span class="n">long</span> <span class="o">=</span> <span class="o">-</span><span class="mf">121.958943</span>
 
-<span class="c1"># Buffer size in kilometer</span>
-<span class="n">buffer</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="c1"># Buffer size in kilometres</span>
+<span class="n">buffer</span> <span class="o">=</span> <span class="mi">50</span>
 
 <span class="c1"># Start and end of the time period for which the data will be retrieved</span>
 <span class="n">start_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -6370,7 +6370,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Then, the <a href="https://geo.weather.gc.ca/geomet/features/collections/hydrometric-stations">hydrometric monitoring stations data</a> available on GeoMet-OGC-API can be retrieved with the <a href="https://geopython.github.io/OWSLib/">OWSLib package</a>. As the bounding box parameter is not as precise as a round buffer, <a href="https://gdal.org/api/index.html#python-api">GDAL</a> can be used to select only the hydrometric stations that are strictly inside a 100 km radius from Chilliwack.</p>
+<p>Then, the <a href="https://geo.weather.gc.ca/geomet/features/collections/hydrometric-stations">hydrometric monitoring stations data</a> available on GeoMet-OGC-API can be retrieved with the <a href="https://geopython.github.io/OWSLib/">OWSLib package</a>. As the bounding box parameter is not as precise as a round buffer, <a href="https://gdal.org/api/index.html#python-api">GDAL</a> can be used to select only the hydrometric stations that are strictly inside a 50 km radius from Chilliwack.</p>
 
 </div>
 </div>
@@ -6463,7 +6463,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Once the hydrometric monitoring stations located within 100 km of Chilliwack are identified, the water level data for a three months period can be retrieved for each station. A water level status will be attributed to each daily mean according to which quartile of the historical daily water level the value is part of.</p>
+<p>Once the hydrometric monitoring stations located within 50 km of Chilliwack are identified, the water level data for a three months period can be retrieved for each station. A water level status will be attributed to each daily mean according to which quartile of the historical daily water level the value is part of.</p>
 <table>
 <thead><tr>
 <th>Quartile</th>
@@ -6489,7 +6489,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 </tr>
 </tbody>
 </table>
-<p>The daily mean water levels of the three months period will be used to create a data frame for each station with <a href="https://pandas.pydata.org/">Pandas</a>. To facilitate the data manipulations, all the data frames will be gathered in a Python dictionary. These data frames will be used to create interactive graphic and tabular views of the historical daily mean water levels of the hydrometric monitoring stations located within 100 km of Chilliwack. They will also be used to display the hydrometric stations on a map with their most recent daily mean water level data for the time period.</p>
+<p>The daily mean water levels of the three months period will be used to create a data frame for each station with <a href="https://pandas.pydata.org/">Pandas</a>. To facilitate the data manipulations, all the data frames will be gathered in a Python dictionary. These data frames will be used to create interactive graphic and tabular views of the historical daily mean water levels of the hydrometric monitoring stations located within 50 km of Chilliwack. They will also be used to display the hydrometric stations on a map with their most recent daily mean water level data for the time period.</p>
 <p>Stations that are missing water level data in the desired time period will be removed from the dataset.</p>
 
 </div>
@@ -6568,13 +6568,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
             <span class="s2">&quot;LONGITUDE&quot;</span>
         <span class="p">])</span>
         <span class="n">historical_data_df</span> <span class="o">=</span> <span class="n">historical_data_df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">historical_data_df</span><span class="p">[</span><span class="s2">&quot;LEVEL&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
-            <span class="n">stations_without_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">station</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">historical_data_df</span><span class="p">[</span><span class="s2">&quot;DATE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+        <span class="n">historical_data_df</span><span class="p">[</span><span class="s2">&quot;DATE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
                 <span class="n">historical_data_df</span><span class="p">[</span><span class="s2">&quot;DATE&quot;</span><span class="p">]</span>
             <span class="p">)</span>
-            <span class="n">historical_data_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;DATE&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>        
+        <span class="n">selected_period_data</span> <span class="o">=</span> <span class="n">historical_data_df</span><span class="p">[</span>
+            <span class="p">(</span><span class="n">historical_data_df</span><span class="p">[</span><span class="s2">&quot;DATE&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">start_date</span><span class="p">))</span> 
+            <span class="o">&amp;</span> <span class="p">(</span><span class="n">historical_data_df</span><span class="p">[</span><span class="s2">&quot;DATE&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">end_date</span><span class="p">))</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="n">selected_period_data</span><span class="p">[</span><span class="s2">&quot;LEVEL&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="n">stations_without_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">station</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Removing any rows without water level data at the</span>
+            <span class="c1"># end of the data frame</span>
+            <span class="k">while</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">historical_data_df</span><span class="p">[</span><span class="s2">&quot;LEVEL&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="n">historical_data_df</span> <span class="o">=</span> <span class="n">historical_data_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span>
+                    <span class="n">historical_data_df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
+                <span class="p">)</span>
+            <span class="n">historical_data_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;DATE&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">historical_data_df</span><span class="p">[</span><span class="s2">&quot;STATUS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">historical_data_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
                 <span class="n">level_status</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">historical_data_df</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
             <span class="p">)</span>
@@ -6590,6 +6600,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
                 <span class="n">type_extremum</span> <span class="o">=</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span> 
                 <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
             <span class="p">)</span>
+            <span class="n">historical_data_df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">historical_data_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">date</span>
             <span class="n">hydrometric_data</span><span class="p">[</span><span class="n">station</span><span class="p">]</span> <span class="o">=</span> <span class="n">historical_data_df</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">stations_without_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">station</span><span class="p">)</span>
@@ -6633,7 +6644,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
     <span class="n">fig</span> <span class="o">=</span> <span class="p">(</span>
         <span class="n">water_level</span><span class="p">[</span><span class="s2">&quot;LEVEL&quot;</span><span class="p">]</span>
         <span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Water level at station </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">station</span><span class="p">),</span>
+            <span class="n">title</span><span class="o">=</span><span class="p">(</span>
+                <span class="s2">&quot;Water levels at station &quot;</span>
+                <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">hydrometric_data</span><span class="p">[</span><span class="n">station</span><span class="p">][</span><span class="s1">&#39;STATION_NAME&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot; (</span><span class="si">{</span><span class="n">station</span><span class="si">}</span><span class="s2">)&quot;</span>
+            <span class="p">),</span>
             <span class="n">template</span><span class="o">=</span><span class="s2">&quot;plotly_white&quot;</span><span class="p">,</span>
             <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;DATE&quot;</span><span class="p">:</span><span class="s2">&quot;Date&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="s2">&quot;Water level (m)&quot;</span><span class="p">,</span> <span class="s2">&quot;variable&quot;</span><span class="p">:</span><span class="s2">&quot;wat&quot;</span><span class="p">},</span>
             <span class="n">color_discrete_sequence</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;gray&quot;</span><span class="p">],</span>
@@ -6718,13 +6733,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
  
  
-<div id="de41c0f5-869d-498e-abab-8952b6788de5"></div>
+<div id="c61a360e-fbe1-49ab-bcbc-68a76a017119"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#de41c0f5-869d-498e-abab-8952b6788de5');
+var element = $('#c61a360e-fbe1-49ab-bcbc-68a76a017119');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "15638a7837a848ec9823c009c9071ce7", "version_major": 2, "version_minor": 0}
+{"model_id": "3bcd73aff21642ed95054c6b80bc61ec", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6787,6 +6802,7 @@ var element = $('#de41c0f5-869d-498e-abab-8952b6788de5');
         <span class="p">}</span>
     <span class="p">)</span>
     <span class="n">displayed_df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">displayed_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
+    <span class="n">displayed_df</span> <span class="o">=</span> <span class="n">displayed_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_date</span><span class="p">:</span><span class="n">end_date</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">display</span><span class="p">(</span><span class="n">table_title</span><span class="p">),</span> <span class="n">display</span><span class="p">(</span><span class="n">displayed_df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
         <span class="n">cell_color</span><span class="p">,</span>
         <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -6816,13 +6832,13 @@ var element = $('#de41c0f5-869d-498e-abab-8952b6788de5');
 
  
  
-<div id="3edeb78d-6cc5-4f89-a0b4-5fbad916eaa5"></div>
+<div id="2dde8412-3ff9-4448-b760-987d3aa1361d"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#3edeb78d-6cc5-4f89-a0b4-5fbad916eaa5');
+var element = $('#2dde8412-3ff9-4448-b760-987d3aa1361d');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "a8774c29a67a4247bbc45875927ab791", "version_major": 2, "version_minor": 0}
+{"model_id": "9d6f07b8f7d84c528b5ace762dd198c2", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6835,14 +6851,14 @@ var element = $('#3edeb78d-6cc5-4f89-a0b4-5fbad916eaa5');
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Finally, an interactive map can be created with <a href="https://ipyleaflet.readthedocs.io/">ipyleaflet</a> to display the most recent water level daily mean of all the hydrometric monitoring stations located within 100 km of Chilliwack for the selected three months period.</p>
+<p>Finally, an interactive map can be created with <a href="https://ipyleaflet.readthedocs.io/">ipyleaflet</a> to display the most recent water level daily mean of all the hydrometric monitoring stations located within 50 km of Chilliwack for the selected three months period.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
     
     <div class="inner_cell">
         
@@ -6856,7 +6872,7 @@ var element = $('#3edeb78d-6cc5-4f89-a0b4-5fbad916eaa5');
 
 <span class="c1"># Parameters</span>
 <span class="n">center</span> <span class="o">=</span> <span class="p">[</span><span class="n">center_lat</span><span class="p">,</span> <span class="n">long</span><span class="p">]</span>
-<span class="n">zoom</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">zoom</span> <span class="o">=</span> <span class="mi">9</span>
 
 <span class="c1"># Map</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">Map</span><span class="p">(</span><span class="n">basemap</span><span class="o">=</span><span class="n">basemaps</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">Positron</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="n">center</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="n">zoom</span><span class="p">)</span>
@@ -6931,13 +6947,13 @@ var element = $('#3edeb78d-6cc5-4f89-a0b4-5fbad916eaa5');
 
  
  
-<div id="d211588a-2167-4d46-b966-9432fa0dd4a7"></div>
+<div id="0f2fdff2-3d66-4eb1-915d-b566408a6c66"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#d211588a-2167-4d46-b966-9432fa0dd4a7');
+var element = $('#0f2fdff2-3d66-4eb1-915d-b566408a6c66');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "16b164ca45e44713b5f13a5b4a82a35f", "version_major": 2, "version_minor": 0}
+{"model_id": "f212c7c6f1064b599ee43cf001b5568f", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6953,13 +6969,13 @@ var element = $('#d211588a-2167-4d46-b966-9432fa0dd4a7');
 
  
  
-<div id="bd82f2a7-afb3-46b9-a2bc-fccacd06f16f"></div>
+<div id="4292bf07-3902-4c5f-b0cd-361b456d4ed1"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#bd82f2a7-afb3-46b9-a2bc-fccacd06f16f');
+var element = $('#4292bf07-3902-4c5f-b0cd-361b456d4ed1');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "150d5ba77b024a46b93d6be202139e6a", "version_major": 2, "version_minor": 0}
+{"model_id": "2ce12f67018947f58fba2b7f758a1b99", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
