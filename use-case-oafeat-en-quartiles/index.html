@@ -6321,7 +6321,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <span class="n">end_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
 
 <span class="c1"># Number of year of data to use to calculate daily water level quantiles</span>
-<span class="n">year_hist</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">year_hist</span> <span class="o">=</span> <span class="mi">1</span>
 
 <span class="c1"># Prefered projection</span>
 <span class="c1"># NAD83 / Statistics Canada Lambert</span>
@@ -6733,13 +6733,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
  
  
-<div id="c61a360e-fbe1-49ab-bcbc-68a76a017119"></div>
+<div id="26628ac9-ef8c-4ebf-826b-df8d69667af2"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#c61a360e-fbe1-49ab-bcbc-68a76a017119');
+var element = $('#26628ac9-ef8c-4ebf-826b-df8d69667af2');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "3bcd73aff21642ed95054c6b80bc61ec", "version_major": 2, "version_minor": 0}
+{"model_id": "4f95ff4cf9204e6a87b8a3419e09b6d3", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6832,13 +6832,13 @@ var element = $('#c61a360e-fbe1-49ab-bcbc-68a76a017119');
 
  
  
-<div id="2dde8412-3ff9-4448-b760-987d3aa1361d"></div>
+<div id="079de357-f3bc-4aed-8471-2f964f5cadc4"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#2dde8412-3ff9-4448-b760-987d3aa1361d');
+var element = $('#079de357-f3bc-4aed-8471-2f964f5cadc4');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "9d6f07b8f7d84c528b5ace762dd198c2", "version_major": 2, "version_minor": 0}
+{"model_id": "9642887f6b17446090421a264e5d8f3a", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6858,7 +6858,7 @@ var element = $('#2dde8412-3ff9-4448-b760-987d3aa1361d');
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
     
     <div class="inner_cell">
         
@@ -6896,7 +6896,7 @@ var element = $('#2dde8412-3ff9-4448-b760-987d3aa1361d');
 <span class="k">def</span> <span class="nf">get_callback</span><span class="p">(</span><span class="n">marker</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">html</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">hydrometric_data</span><span class="p">[</span><span class="n">station</span><span class="p">][</span><span class="s1">&#39;STATION_NAME&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/b&gt;&lt;br&gt;&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">marker</span><span class="o">.</span><span class="n">STATION_NAME</span><span class="si">}</span><span class="s2">&lt;/b&gt;&lt;br&gt;&quot;</span>
             <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Station ID: </span><span class="si">{</span><span class="n">marker</span><span class="o">.</span><span class="n">STATION_NUMBER</span><span class="si">}</span><span class="s2">&lt;br&gt;&quot;</span>
             <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Date: </span><span class="si">{</span><span class="n">marker</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&lt;br&gt;&quot;</span>
             <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Water level: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">marker</span><span class="o">.</span><span class="n">LEVEL</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> m&quot;</span>
@@ -6947,13 +6947,13 @@ var element = $('#2dde8412-3ff9-4448-b760-987d3aa1361d');
 
  
  
-<div id="0f2fdff2-3d66-4eb1-915d-b566408a6c66"></div>
+<div id="f96d4053-6d23-4624-ba68-e35030b732e5"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#0f2fdff2-3d66-4eb1-915d-b566408a6c66');
+var element = $('#f96d4053-6d23-4624-ba68-e35030b732e5');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "f212c7c6f1064b599ee43cf001b5568f", "version_major": 2, "version_minor": 0}
+{"model_id": "8c8ce171da2d4910a2e3160d56027205", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6969,13 +6969,13 @@ var element = $('#0f2fdff2-3d66-4eb1-915d-b566408a6c66');
 
  
  
-<div id="4292bf07-3902-4c5f-b0cd-361b456d4ed1"></div>
+<div id="3d75e907-70aa-4a73-aff3-94c1b18265a4"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#4292bf07-3902-4c5f-b0cd-361b456d4ed1');
+var element = $('#3d75e907-70aa-4a73-aff3-94c1b18265a4');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "2ce12f67018947f58fba2b7f758a1b99", "version_major": 2, "version_minor": 0}
+{"model_id": "470b9f44adfd4395a5e2af7f7fee7436", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
